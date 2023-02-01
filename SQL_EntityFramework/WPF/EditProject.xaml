@@ -1,0 +1,30 @@
+﻿<Window x:Class="SQL_EntityFramework.WPF.EditProject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SQL_EntityFramework.WPF"
+        mc:Ignorable="d"
+        Title="CreateProject" Height="390" Width="559"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Label Content="Редактирование проекта" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="36" Width="211" FontSize="16"/>
+        <Label x:Name="labelName" Content="Название проекта:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textName" HorizontalAlignment="Left" Margin="10,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Height="28"/>
+        <Label x:Name="labelClient" Content="Компания-заказчик:" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textCompanyClient" HorizontalAlignment="Left" Margin="10,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Height="28"/>
+        <Label x:Name="labelExecutor" Content="Компания-исполнитель:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textCompanyExecutor" HorizontalAlignment="Left" Margin="10,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Height="28"/>
+        <Label x:Name="labelStartDate" Content="Дата начала:" HorizontalAlignment="Left" Margin="366,51,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="timeStartDate" HorizontalAlignment="Left" Margin="366,84,0,0" VerticalAlignment="Top" Height="28" Width="154"/>
+        <Label x:Name="labelEndDate" Content="Дата окончания:" HorizontalAlignment="Left" Margin="366,123,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="timeEndDate" HorizontalAlignment="Left" Margin="366,154,0,0" VerticalAlignment="Top" Height="28" Width="154"/>
+        <Label x:Name="labelPriority" Content="Приоритет:" HorizontalAlignment="Left" Margin="366,199,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textPriority" HorizontalAlignment="Left" Margin="366,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="28" PreviewTextInput="NumberValidationTextBox"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Margin="144,296,0,0" VerticalAlignment="Top" Height="40" Width="77" Click="buttonCancel_Click"/>
+        <Button x:Name="buttonSaveProject" Content="Сохранить" HorizontalAlignment="Left" Margin="347,296,0,0" VerticalAlignment="Top" Height="39" Width="77" Click="buttonSaveProject_Click"/>
+        <Label x:Name="textError" Content="Заполните красные поля " HorizontalAlignment="Left" Margin="200,263,0,0" VerticalAlignment="Top" Width="186" Foreground="Red" Height="37" Visibility="Hidden"/>
+    </Grid>
+</Window>

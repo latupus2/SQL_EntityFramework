@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище MyDataModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Employee_Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Employee_Patronymic" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Employee_Email" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project_Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Project_ClientCompany" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Project_ExecutorCompany" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Project_StartDate" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Project_EndDate" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Project_Priority" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectEmployee">
+          <Key>
+            <PropertyRef Name="ProjectEmployee_ID" />
+          </Key>
+          <Property Name="ProjectEmployee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="IsManager" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ProjectEm__Emplo__5CD6CB2B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ProjectEmployee" Type="Self.ProjectEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="ProjectEmployee">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectEm__Proje__5BE2A6F2">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectEmployee" Type="Self.ProjectEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="ProjectEmployee">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище MyDataModelContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectEmployee" EntityType="Self.ProjectEmployee" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ProjectEm__Emplo__5CD6CB2B" Association="Self.FK__ProjectEm__Emplo__5CD6CB2B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ProjectEmployee" EntitySet="ProjectEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectEm__Proje__5BE2A6F2" Association="Self.FK__ProjectEm__Proje__5BE2A6F2">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectEmployee" EntitySet="ProjectEmployee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Employee_Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Employee_Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Employee_Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProjectEmployee" Relationship="Self.FK__ProjectEm__Emplo__5CD6CB2B" FromRole="Employee" ToRole="ProjectEmployee" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project_ClientCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project_ExecutorCompany" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project_StartDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project_EndDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Project_Priority" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProjectEmployee" Relationship="Self.FK__ProjectEm__Proje__5BE2A6F2" FromRole="Project" ToRole="ProjectEmployee" />
+        </EntityType>
+        <EntityType Name="ProjectEmployee">
+          <Key>
+            <PropertyRef Name="ProjectEmployee_ID" />
+          </Key>
+          <Property Name="ProjectEmployee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="IsManager" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__ProjectEm__Emplo__5CD6CB2B" FromRole="ProjectEmployee" ToRole="Employee" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__ProjectEm__Proje__5BE2A6F2" FromRole="ProjectEmployee" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK__ProjectEm__Emplo__5CD6CB2B">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ProjectEmployee" Type="Self.ProjectEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="ProjectEmployee">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectEm__Proje__5BE2A6F2">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectEmployee" Type="Self.ProjectEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Project_ID" />
+            </Principal>
+            <Dependent Role="ProjectEmployee">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Project" EntityType="Self.Project" />
+          <EntitySet Name="ProjectEmployee" EntityType="Self.ProjectEmployee" />
+          <AssociationSet Name="FK__ProjectEm__Emplo__5CD6CB2B" Association="Self.FK__ProjectEm__Emplo__5CD6CB2B">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ProjectEmployee" EntitySet="ProjectEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectEm__Proje__5BE2A6F2" Association="Self.FK__ProjectEm__Proje__5BE2A6F2">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectEmployee" EntitySet="ProjectEmployee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MyDataModelContainer" CdmEntityContainer="MyDataEntities">
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="MyDataModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+                <ScalarProperty Name="Employee_Surname" ColumnName="Employee_Surname" />
+                <ScalarProperty Name="Employee_Patronymic" ColumnName="Employee_Patronymic" />
+                <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="MyDataModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Project_ID" ColumnName="Project_ID" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+                <ScalarProperty Name="Project_ClientCompany" ColumnName="Project_ClientCompany" />
+                <ScalarProperty Name="Project_ExecutorCompany" ColumnName="Project_ExecutorCompany" />
+                <ScalarProperty Name="Project_StartDate" ColumnName="Project_StartDate" />
+                <ScalarProperty Name="Project_EndDate" ColumnName="Project_EndDate" />
+                <ScalarProperty Name="Project_Priority" ColumnName="Project_Priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectEmployee">
+            <EntityTypeMapping TypeName="MyDataModel.ProjectEmployee">
+              <MappingFragment StoreEntitySet="ProjectEmployee">
+                <ScalarProperty Name="ProjectEmployee_ID" ColumnName="ProjectEmployee_ID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
